@@ -21,11 +21,7 @@ export class LoginComponent {
       //Redirect User to homepage
     }
     else {
-      this.loginErrorMsg = 'InvalidUserId or Password'
+      this.loginErrorMsg = 'InvalidUserId or Password';
     }
   }
-
-
-
-
 }
