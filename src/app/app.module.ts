@@ -14,7 +14,7 @@ import { DashBoardComponent } from './features/dashboard/dashboard.component';
     LoginComponent,
     HomeComponent,
     HeaderComponent,
-    DashBoardComponent
+    DashBoardComponent,
   ],
   imports: [
     BrowserModule,
