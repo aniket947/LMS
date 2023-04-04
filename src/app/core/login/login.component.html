@@ -1,4 +1,3 @@
-
 <div class="container-fluid h100p bg-brown">
   <div class="row">
     <div class="col-md-4 offset-md-4 col-sm-6 offset-sm-3">
@@ -12,7 +11,7 @@
           <form>
             <div class="form-group">
               <label for="email">Email: </label>
-              <input type="text"  [(ngModel)]="email" name="email" class="form-control" placeholder="Email">{{email}}
+              <input type="text" [(ngModel)]="email" name="email" class="form-control" placeholder="Email">
             </div>
             <div class="form-group">
               <label for="password">Password: </label>
@@ -22,11 +21,11 @@
               </div>
             </div>
             <div class="text-center">
-              <input type="submit" class="btn btn-my" value="Login">
+              <input type="submit" class="btn btn-my" value="Login" (click)="login()">
             </div>
           </form>
           <div class="text-center sign-up">
-             Don't have an account ? <a>Sign Up</a> here.
+            Don't have an account ? <a>Sign Up</a> here.
           </div>
 
 
