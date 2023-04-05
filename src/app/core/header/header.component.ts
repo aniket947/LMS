@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lms-header',
@@ -6,11 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor() { }
+  constructor(private router: Router) { }
   loggedInUserName: string = '';
 
   ngOnInit() {
     let loggedInUserobj = JSON.parse(sessionStorage.getItem('loggedInUser')!);
     this.loggedInUserName = loggedInUserobj.name;
+  }
+  logout() {
+    sessionStorage.clear();
+    this.router.navigate(['']);
   }
 }

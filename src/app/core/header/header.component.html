@@ -1,10 +1,14 @@
-<div class="header">
-    <div class="row">
-        <div class="col-6">
-            Library Managment System
-        </div>
-        <div class="col-6 align-right">
-            {{loggedInUserName}}
-        </div>
-    </div>
-</div>
+<p>
+    <mat-toolbar color="primary">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>Library Managment System</span>
+        <span class="example-spacer"></span>
+        {{loggedInUserName}}
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
+            (click)="logout()">
+            <mat-icon aria-hidden="false">logout</mat-icon>
+        </button>
+    </mat-toolbar>
+</p>
