@@ -4,20 +4,26 @@
       Librarians
     </div>
     <div class="col-6 align-right">
-      <button mat-raised-button color="primary" (click)="drawer.toggle()">Add Librarian</button>
+      <button mat-raised-button color="primary" (click)="drawer.toggle()">Librarian Form</button>
     </div>
   </div>
 </div>
 <mat-drawer-container class="example-container">
   <mat-drawer #drawer [mode]="'push'" position='end'>
-    <div>User Form </div>
+    <div>
+      Employee ID: <input type="text" [(ngModel)]="empId" ><br>
+      Employee Name: <input type="text" [(ngModel)]="name" ><br>
+      Joining Date: <input type="date" [(ngModel)]="joiningDate" ><br>
+      Mobile No: <input type="number" [(ngModel)]="contactNo" ><br>
+      <button (click)="addlibrarian()"> Add Librarian</button>
+    </div>
   </mat-drawer>
- </mat-drawer-container>
+</mat-drawer-container>
 
 
 <!-- <mat-form-field> -->
-  <!-- <mat-label>Filter</mat-label> -->
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+<!-- <mat-label>Filter</mat-label> -->
+<input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
 <!-- </mat-form-field> -->
 
 <div class="mat-elevation-z8">

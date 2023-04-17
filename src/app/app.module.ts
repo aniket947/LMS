@@ -14,9 +14,10 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatFormFieldModule } from '@angular/material/form-field';
 import {MatSortModule} from '@angular/material/sort';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { AuthGuard } from './core/guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatSortModule,
     MatSidenavModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
