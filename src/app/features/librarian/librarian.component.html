@@ -11,10 +11,10 @@
 <mat-drawer-container class="example-container">
   <mat-drawer #drawer [mode]="'push'" position='end'>
     <div>
-      Employee ID: <input type="text" [(ngModel)]="empId" ><br>
-      Employee Name: <input type="text" [(ngModel)]="name" ><br>
-      Joining Date: <input type="date" [(ngModel)]="joiningDate" ><br>
-      Mobile No: <input type="number" [(ngModel)]="contactNo" ><br>
+      Employee ID: <input type="text" [(ngModel)]="empId"><br>
+      Employee Name: <input type="text" [(ngModel)]="name"><br>
+      Joining Date: <input type="date" [(ngModel)]="joiningDate"><br>
+      Mobile No: <input type="number" [(ngModel)]="contactNo"><br>
       <button (click)="addlibrarian()"> Add Librarian</button>
     </div>
   </mat-drawer>
@@ -27,7 +27,7 @@
 <!-- </mat-form-field> -->
 
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource" matSort>
+  <table mat-table [dataSource]="libData" matSort>
 
     <!-- ID Column -->
     <ng-container matColumnDef="empId">
@@ -51,6 +51,11 @@
     <ng-container matColumnDef="contactNo">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact No. </th>
       <td mat-cell *matCellDef="let row"> {{row.contactNo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="userType">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> User Type </th>
+      <td mat-cell *matCellDef="let row"> {{row.userType}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

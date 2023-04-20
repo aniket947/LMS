@@ -17,7 +17,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatFormFieldModule } from '@angular/material/form-field';
 import {MatSortModule} from '@angular/material/sort';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AuthGuard } from './core/guards/auth.guard';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +44,9 @@ import { AuthGuard } from './core/guards/auth.guard';
     MatPaginatorModule,
     MatFormFieldModule,
     MatSortModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatSnackBarModule,
+    HttpClientModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

@@ -1,7 +1,9 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { LibrarianService } from 'src/app/services/librarian.service';
 
 
 
@@ -14,48 +16,53 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 
 export class LibrarianComponent implements AfterViewInit {
-  displayedColumns: string[] = ['empId', 'name', 'joiningDate', 'contactNo'];
-  dataSource: MatTableDataSource<any>;
-  empId: any=[];
-  name: any=[];
-  joiningDate: any=[];
-  contactNo: any=[];
+  displayedColumns: string[] = ['empId', 'name', 'joiningDate', 'contactNo', 'userType'];
+  libData: MatTableDataSource<any>;
+  empId: any = [];
+  name: any = [];
+  joiningDate: any = [];
+  contactNo: any = [];
+  userType: any = [];
   // librarianIDMsg = '';
   // librarianNameMsg = '';
   // librarianJoiningDateMsg = '';
   // librarianMobNumMsg = '';
-  
-  
+
+
 
 
   @ViewChild(MatPaginator) paginator: any;
   @ViewChild(MatSort) sort: any;
 
-  constructor() {
-
-    // this.dataSource = new MatTableDataSource([{
-    //   ID: this.empId, name: this.name,
-    //   date: this.joiningDate, mobNum: this.contactNo
-    // }])
-    this.dataSource = new MatTableDataSource([{
-      empId: '1001',
-      name: 'Piyush',
-      joiningDate: '07/04/2023',
-      contactNo: 9922478965
+  constructor(private librarianService: LibrarianService, private _snackBar: MatSnackBar) {
+    this.libData = new MatTableDataSource([{
     }]);
+  }
+  ngOnInit() {
+    this.bindLibrarians();
   }
 
   ngAfterViewInit(): void {
-    this.dataSource!.paginator = this.paginator;
-    this.dataSource!.sort = this.sort;
+    this.libData!.paginator = this.paginator;
+    this.libData!.sort = this.sort;
+  }
+  bindLibrarians() {
+    this.librarianService.loadLibrarian().subscribe(res => {
+      console.log(res);
+      let librarianData: any = [];
+      Object.entries(res).forEach((key, value) => {
+        librarianData.push(key[1]);
+      })
+      this.libData = librarianData;
+    })
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource!.filter = filterValue.trim().toLowerCase();
+    this.libData!.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource!.paginator) {
-      this.dataSource!.paginator.firstPage();
+    if (this.libData!.paginator) {
+      this.libData!.paginator.firstPage();
     }
   }
   // validationEntry() {
@@ -82,27 +89,23 @@ export class LibrarianComponent implements AfterViewInit {
   //   return true;
   // }
   addlibrarian() {
-      let a = {
-      empId: this.empId, name: this.name,
-      joiningDate: this.joiningDate, contactNo: this.contactNo
-    }
-    this.dataSource.data.push(a)
-    // this.row.push(this.dataSource);
-  
-    // this.dataSource = new MatTableDataSource([a])
-    // let librarianarray = [];
-    // librarianarray = this.dataSource;
-
-    // librarianarray.push(a)
-    // this.clearMsg();
-    // let validationform = this.validationEntry();
-    // if (validationform == true) {
-    //   this.studentArray.push(this.dataSource);
-
+    let data = {
+      empId: this.empId,
+      name: this.name,
+      joiningDate: this.joiningDate,
+      contactNo: this.contactNo,
+      userType: 'Librarian'
+    };
+    this.librarianService.saveLibrarian(data).subscribe(res => {
+      console.log(res);
+      this._snackBar.open('Data Saved', '', {
+        horizontalPosition: 'right',
+        verticalPosition: 'bottom',
+        duration: 3000
+      });
+      this.bindLibrarians();
+    })
   }
-
-
-
 }
   // clearMsg() {
   //   this.librarianIDMsg = '';
